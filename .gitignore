@@ -1,0 +1,30 @@
+# IDE files
+.idea/
+.vscode
+*.iml
+*.iws
+
+# Logs
+*.log
+
+# Temp files
+*.swp
+
+# Editor backup files
+*.bak
+
+# IDE temporary files
+*.suo
+*.sln
+*.user
+
+# Virtual environments
+env/
+venv/
+
+# not-used by Docker Compose
+*.ds_store
+.DS_Store
+.AppleDouble
+.LSOverride
+
