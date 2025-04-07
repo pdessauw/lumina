@@ -25,7 +25,26 @@ this file to facilitate debugging and future deployments.
 | MODEL_DIRPATH   | Path to the local folder where the LLMs are stored |
 | MODEL_FNAME     | Name of the model directory / file                 |
 | OPENWEBUI_IMAGE | Image identifier for OpenWebUI                     |
-| OPENWEBUI_PORT  | OpenWebUI web interface port                       |
+| NGINX_IMAGE     | Image identifier for Nginx                         |
+| HTTP_PORT       | HTTP port for Nginx                                |
+| HTTPS_PORT      | HTTPS port for Nginx                               |
+
+### SSL certificates
+
+Place the SSL certificates in the *nginx/ssl* folder. To create self-signed certificates,
+run:
+```bash
+openssl req \
+  -newkey rsa:2048 \
+  -nodes -subj "/CN="localhost \
+  -keyout nginx/openwebui.key \
+  -x509 -days 365 \
+  -out nginx/openwebui.crt
+```
+
+Please note that the default names (*openwebui.crt* and *openwebui.key*) are linked to 
+the nginx configuration in *nginx/conf.d*. If you change the default names, remember to
+propagate the change in the nginx configuration as well!
 
 ### Deploy the stack
 
@@ -37,5 +56,4 @@ docker compose --env-file ${DEPLOY_ENV} up -d
 ### Access the chatbot
 
 Within a few minutes of deployment, the chatbot will be ready at 
-`http://localhost:${OPENWEBUI_PORT}`. The variable `OPENWEBUI_PORT` is defined in the env
-file.
+`https://localhost:${HTTPS_PORT}`. The variable `HTTPS_PORT` is defined in the env file.

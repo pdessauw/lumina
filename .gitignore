@@ -28,3 +28,8 @@ venv/
 .AppleDouble
 .LSOverride
 
+# Nginx SSL certificates
+nginx/ssl/*.crt
+nginx/ssl/*.cert
+nginx/ssl/*.key
+
